@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[top=0.9in, bottom=1in, left=1.5in, right=1.5in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[icelandic]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[sc]{mathpazo}
+\usepackage[parfill]{parskip}
+\renewcommand{\baselinestretch}{1.2}
+\usepackage{booktabs,tabularx}
+\usepackage{multirow}
+\usepackage{enumerate}
+\usepackage{adjustbox}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{algpseudocode}
+\usepackage{tikz}
+\usepackage{nicefrac}
+\usepackage{changepage}
+\usepackage{hyperref}
+\usetikzlibrary{arrows, positioning, calc, graphs}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{minted}
+\usemintedstyle{manni}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\title{Vefforritun 2 Einstaklingsverkefni}
+\author{Ragnar Björn Ingvarsson, rbi3}
+\tikzset{->, >=stealth', shorten >=1pt, node distance=2cm,thick, main node/.style={circle,draw,minimum size=3em}}
+
+\begin{document}
+\renewcommand\thepage{}
+
+	\maketitle
+
+	\newpage
+	\setcounter{page}{1}
+	\renewcommand\thepage{\arabic{page}}
+
+	\section{Inngangur}
+	Þar sem ég hef verið núna að læra japönsku í rúm 2 ár, þá hef ég rekið mig á þann mikla vanda að horfa á þætti með japönskum texta. 
+	Til að ná því þarf annaðhvort að fá áskrift að mörgum streymisíðum til að fá nógu gott úrval eða leita til sjóræningjanna. Ég hef alltaf valið seinni kostinn 
+	en hef orðið þreyttur á ferlinu sem felst í því. Fyrst þarf að hlaða niður þáttum, svo leita í gegn um síðu með textum, hlaða niður textunum og færa þá á 
+	þægilegan stað, og svo loks opna þáttinn og draga inn textann. Sem er náttúrulega alveg óásættanlegt að þurfa að hafa fleiri en einn glugga opinn á sama tíma. 
+	
+	Þess vegna ákvað ég að búa til þessa síðu sem gerir manni kleift að leita að þáttum og textum á sama stað, og helst að eins lítið basl og hægt sé eigi sér stað. 
+	\section{Tækni, tól og útfærsla}
+	Til að ná þessu markmiði ákvað ég að búa til framenda sem væri þægilegur notkunar og fallegur því það er nú þegar til síða sem þjónar næstum því sama tilgangi 
+	en hún lítur hreinlega bara hræðilega út. Til þess notaði ég Next.js með React og Tailwind því ég hef mesta reynslu af því hingað til og vil helst einbeita 
+	mér meira að því að fullkomna útfærsluna frekar en að læra á ný tól. Einnig notaði ég \texttt{motion} fyrir flóknari kvikun en það var lítið notað.
+
+	Til að streyma þáttum þá nota ég \href{https://github.com/consumet/api.consumet.org}{consumet} sem leitar að seríum frá núverandi streymisíðum og tekur hls 
+	hlekkinn frá þeim og gefur mér hann. Hlekkurinn er að sjálfsögðu verndaður af CORS svo ég nota einhvers konar CORS proxy til að komast hjá því. Fyrir texta 
+	nota ég síðuna \href{https://kitsunekko.net/}{https://kitsunekko.net/} og næ einfaldlega bara í html-ið frá síðunni og vinn úr því vegna þess að þeir virðast 
+	ekki gefa út neina betri leið.
+
+	Ég útfærði semsagt bara framenda og ég hugsa að ég hafi einnig útfært flóknari framenda, og svo notfærði ég mér líka \href{https://www.figma.com/design/AH3i5YjtNi5afQ72QmelZ6/Untitled?node-id=0-1&t=3JF5reaVuTWhW4Yw-1}{Figma skjal}, sem er nú nokkuð einfalt en 
+ég fylgdi því og notaði það mikið sem fyrirmynd.
+
+	\section{Hvað gekk vel}
+
+	Allur framendinn gekk rosalega vel, það var mjög fátt sem virkaði illa en aðallega var bara vesen vegna þess að ég byrjaði að hanna forritið með desktop í 
+	huga sem reyndist vera erfitt með Tailwind þar sem það vill hanna mobile-first. Svo ég breytti hugmyndafræðinni minni til að koma til móts við það og eftir 
+	þá breytingu gekk útlitshönnun rosalega vel fyrir sig.
+
+	\section{Hvað gekk illa}
+
+	Svolítið margt gekk illa, en fyrst var það að ná að geta streymt þætti sem var ekki í minni eigu. Það tók rosalegan tíma að finna út úr því og láta það allt 
+	virka því consumet er líka ekki með mjög góða skjölun og svona. Svo, það sem gekk aðallega illa var að vinna á texta-browserinum. Sá component var ótrúlega 
+	erfiður að vinna við því, eins og ég komst að mjög fljótt, óskipulögð gögn eru erfið að vinna með. Kitsunekko er semsagt samansafn af user-uploaded textum, 
+	sem gerir það að verkum að það er ekkert samræmi í titlum, þáttanúmerum eða neitt. Þess vegna þarf ég að keyra titilinn til að leita að í gegn um database sem 
+	skilar mismunandi leiðum til að skrifa titilinn og svo leita að því með fuzzy search og allskonar sem manni myndi kannski ekki detta í hug um leið að myndi 
+	verða vandamál. En til að gera þetta ekki of langt eru þetta helstu tveir erfiðleikar mínir við verkefnið.
+
+	\section{Hvað var áhugavert}
+
+	Eitt sem mér fannst rosalega áhugavert var hversu mikið Figma skjal hjálpar við sköpun framenda. Ég hafði ekki gert mér grein fyrir hversu mikið getur 
+	komið fyrir ef það er ekki til fyrirmynd til að hanna eftir og hvað það flýtir fyrir að sjá nákvæmlega hvað þarf að gera.
+
+	\section{Lokaorð}
+
+	Þetta var ótrúlega skemmtilegt verkefni og ég er mjög sáttur með útkomuna. Ein viðbæta sem ég mun svo bæta við er að ná að finna einhverja leið til að 
+	sjálfkrafa endurtímasetja texta því eins og er eru þeir nærri allir á vitlausum tíma. En það er seinnitímavandamál og eins og þetta er þá svínvirkar það. (svo 
+	lengi sem textarnir eru góðir).
+
+
+	
+\end{document}

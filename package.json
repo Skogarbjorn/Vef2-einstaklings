@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@consumet/extensions": "^1.8.1",
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "adm-zip": "^0.5.16",
     "cheerio": "^1.0.0",
     "file-type": "^20.4.1",
@@ -17,23 +19,30 @@
     "gsap": "^3.12.7",
     "gsap-trial": "^3.12.7",
     "hls.js": "^1.6.0",
+    "lucide-react": "^0.487.0",
+    "motion": "^12.6.3",
     "next": "15.2.4",
     "node-7z": "^3.0.0",
     "node-unrar-js": "^2.0.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-player": "^2.16.0",
-    "unzipper": "^0.12.3"
+    "unzipper": "^0.12.3",
+    "yt-dlp-exec": "^1.0.2",
+    "yt-dlp-wrap": "^2.3.12"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
-    "tailwindcss": "^4",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.3",
     "typescript": "^5"
   }
 }
